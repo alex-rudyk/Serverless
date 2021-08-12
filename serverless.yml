@@ -3,7 +3,7 @@ service: aws-test-book-api
 frameworkVersion: '2'
 
 custom:
-  tableName: 'users-table-${self:provider.stage}'
+  tableName: 'books-table-${self:provider.stage}'
   dynamodb:
     start:
       migrate: true
@@ -27,9 +27,9 @@ provider:
             - dynamodb:UpdateItem
             - dynamodb:DeleteItem
           Resource:
-            - Fn::GetAtt: [ UsersTable, Arn ]
+            - Fn::GetAtt: [ BooksTable, Arn ]
   environment:
-    USERS_TABLE: ${self:custom.tableName}
+    BOOKS_TABLE: ${self:custom.tableName}
 
 functions:
   api:
@@ -44,14 +44,14 @@ functions:
 
 resources:
   Resources:
-    UsersTable:
+    BooksTable:
       Type: AWS::DynamoDB::Table
       Properties:
         AttributeDefinitions:
-          - AttributeName: userId
+          - AttributeName: bookUuid
             AttributeType: S
         KeySchema:
-          - AttributeName: userId
+          - AttributeName: bookUuid
             KeyType: HASH
         ProvisionedThroughput:
           ReadCapacityUnits: 1
