@@ -15,6 +15,11 @@ module.exports.getAllBooks = async (req, res) => {
 module.exports.getBook = async (req, res) => {
     const { bookUuid } = req.params;
 
+    if (!bookUuid) {
+        res.status(400).json({ error: 'bookUuid is required' });
+        return;
+    }
+
     try {
         const { Item } = await bookModel.get(bookUuid);
 
@@ -53,6 +58,11 @@ module.exports.updateBook = async (req, res) => {
     const { bookUuid } = req.params;
     const { name, releaseDate, authorName } = req.body;
 
+    if (!bookUuid) {
+        res.status(400).json({ error: 'bookUuid is required' });
+        return;
+    }
+
     const bookData = {
         bookUuid,
         name,
@@ -72,6 +82,11 @@ module.exports.updateBook = async (req, res) => {
 
 module.exports.deleteBook = async (req, res) => {
     const { bookUuid } = req.params;
+
+    if (!bookUuid) {
+        res.status(400).json({ error: 'bookUuid is required' });
+        return;
+    }
 
     try {
         await bookModel.delete(bookUuid);
