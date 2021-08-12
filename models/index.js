@@ -6,6 +6,9 @@ if (process.env.IS_OFFLINE) {
     dynamoDbClientParams.endpoint = 'http://localhost:8000'
 }
 
+/**
+ * @const {AWS.DynamoDB.DocumentClient} new DynamoDB client.
+ */
 const dynamoDbClient = new AWS.DynamoDB.DocumentClient(dynamoDbClientParams);
 
 module.exports.dynamoDbClient = dynamoDbClient;

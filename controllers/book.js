@@ -1,5 +1,10 @@
 const bookModel = require('../models/book');
 
+/**
+ * Get all books from library.
+ * @param {Request} req request
+ * @param {Response} res response
+ */
 module.exports.getAllBooks = async (req, res) => {
 
     try {
@@ -12,6 +17,11 @@ module.exports.getAllBooks = async (req, res) => {
     }
 }
 
+/**
+ * Get book at UUID from library.
+ * @param {Request} req request
+ * @param {Response} res response
+ */
 module.exports.getBook = async (req, res) => {
     const { bookUuid } = req.params;
 
@@ -34,6 +44,11 @@ module.exports.getBook = async (req, res) => {
     }
 }
 
+/**
+ * Create new book.
+ * @param {Request} req request
+ * @param {Response} res response
+ */
 module.exports.createBook = async (req, res) => {
     const { uuid, name, releaseDate, authorName } = req.body;
 
@@ -54,6 +69,11 @@ module.exports.createBook = async (req, res) => {
     }
 }
 
+/**
+ * Update book at UUID.
+ * @param {Request} req request
+ * @param {Response} res response
+ */
 module.exports.updateBook = async (req, res) => {
     const { bookUuid } = req.params;
     const { name, releaseDate, authorName } = req.body;
@@ -80,6 +100,11 @@ module.exports.updateBook = async (req, res) => {
     }
 }
 
+/**
+ * Delete book at UUID.
+ * @param {Request} req request
+ * @param {Response} res response
+ */
 module.exports.deleteBook = async (req, res) => {
     const { bookUuid } = req.params;
 

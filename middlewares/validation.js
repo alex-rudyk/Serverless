@@ -14,6 +14,10 @@ const schemes = {
     }),
 }
 
+/**
+ * Create middleware function for validate input data.
+ * @param {Joi.ObjectSchema} schem 
+ */
 function makeValidator(schem) {
     return async (req, res, next) => {
         const { body } = req;
